@@ -1,0 +1,402 @@
+/* ============================================================
+   BAGIAN KATALOG (BAKED & CO. SHOWCASE)
+   (tambahkan di bawah style.css yang sudah ada)
+   ============================================================ */
+
+/* ---------- DASAR HALAMAN KATALOG ---------- */
+.katalog-halaman {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #3b2417;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Radio helper (disembunyikan) */
+.katalog-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Main stage */
+.katalog-panggung {
+  position: fixed;
+  inset: 0;
+  --warna-teks: #f6ecd9;
+  --warna-latar: #3b2417;
+  background: var(--warna-latar);
+  color: var(--warna-teks);
+  transition: background 0.6s ease;
+}
+.katalog-panggung.terang {
+  --warna-teks: #3b2417;
+}
+
+/* ---------- NAVIGASI KATEGORI (KIRI ATAS) ---------- */
+.katalog-nav {
+  position: absolute;
+  top: 28px;
+  left: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 5;
+}
+.katalog-nav label {
+  cursor: pointer;
+  font-size: 0.95rem;
+  opacity: 0.65;
+  padding: 2px 0;
+  transition: all 0.3s ease;
+}
+.katalog-nav label:hover {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* ---------- PENCARIAN (KANAN ATAS) ---------- */
+.katalog-pencarian {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  width: min(300px, 42vw);
+  z-index: 5;
+}
+.katalog-pencarian input {
+  width: 100%;
+  padding: 10px 18px;
+  border-radius: 99px;
+  border: 1.5px solid var(--warna-teks);
+  background: transparent;
+  color: var(--warna-teks);
+  font: inherit;
+  font-size: 0.9rem;
+}
+.katalog-pencarian input::placeholder {
+  color: var(--warna-teks);
+  opacity: 0.6;
+}
+.katalog-tips {
+  position: absolute;
+  right: 0;
+  top: 48px;
+  width: max(100%, 260px);
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: var(--warna-teks);
+  color: var(--warna-latar);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: all 0.3s ease;
+}
+.katalog-pencarian:hover .katalog-tips,
+.katalog-pencarian:focus-within .katalog-tips {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.katalog-tips b { display: block; margin-bottom: 4px; }
+.katalog-tips ol { list-style: none; padding: 0; }
+
+/* ---------- LOGO (KIRI BAWAH) ---------- */
+.katalog-logo {
+  position: absolute;
+  bottom: 28px;
+  left: 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.1rem;
+  z-index: 5;
+}
+.katalog-logo svg { width: 44px; height: 44px; }
+
+/* ---------- KONTAK (KANAN BAWAH) ---------- */
+.katalog-kontak {
+  position: absolute;
+  bottom: 28px;
+  right: 32px;
+  text-align: right;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  z-index: 5;
+}
+.katalog-kontak a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+/* ---------- STAGE / SLIDE ---------- */
+.katalog-slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  animation: katalog-masuk 0.7s ease;
+}
+@keyframes katalog-masuk {
+  from { opacity: 0; transform: scale(0.97); }
+}
+
+.katalog-judul-raksasa {
+  position: absolute;
+  font-weight: 800;
+  font-size: clamp(3.4rem, 17vw, 17rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-align: center;
+  opacity: 0.95;
+  white-space: nowrap;
+}
+.katalog-beranda .katalog-judul-raksasa {
+  font-size: clamp(3rem, 13vw, 13rem);
+}
+.katalog-beranda .katalog-judul-raksasa small {
+  display: block;
+  font-size: 0.2em;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  margin-top: 0.6em;
+}
+
+.katalog-logo-besar {
+  position: relative;
+  width: clamp(120px, 18vw, 220px);
+  height: auto;
+  margin-top: -30vh;
+}
+
+/* Slide produk */
+.katalog-produk {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: katalog-masuk 0.5s ease;
+}
+.katalog-gambar-besar {
+  font-size: 0;
+}
+.katalog-gambar-besar svg {
+  width: clamp(210px, 34vw, 400px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 28px 24px rgba(0, 0, 0, 0.35));
+}
+.katalog-nama-produk {
+  position: absolute;
+  bottom: 12vh;
+  font-weight: 600;
+  font-size: 1.15rem;
+  padding: 6px 20px;
+  border-radius: 99px;
+  background: var(--warna-teks);
+  color: var(--warna-latar);
+}
+.katalog-panah {
+  position: absolute;
+  top: 50%;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid var(--warna-teks);
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 6;
+}
+.katalog-panah:hover {
+  background: var(--warna-teks);
+  color: var(--warna-latar);
+}
+.katalog-panah-kiri { left: 22%; }
+.katalog-panah-kanan { right: 22%; }
+.katalog-penghitung {
+  position: absolute;
+  bottom: 7vh;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* Aksesibilitas fokus */
+.katalog-nav label:focus-visible,
+.katalog-pencarian input:focus-visible {
+  outline: 2px solid currentColor;
+}
+
+/* ---------- WARNA LATAR PER KATEGORI ---------- */
+#pilih-beranda:checked ~ .katalog-panggung { --warna-latar: #3b2417; }
+#pilih-beranda:checked ~ .katalog-panggung .katalog-slide-beranda { display: flex; }
+#pilih-beranda:checked ~ .katalog-panggung .katalog-nav label[for="pilih-beranda"] {
+  opacity: 1; font-weight: 700;
+}
+
+#pilih-roti:checked ~ .katalog-panggung { --warna-latar: #8a5a2b; }
+#pilih-roti:checked ~ .katalog-panggung .katalog-slide-roti { display: flex; }
+#pilih-roti:checked ~ .katalog-panggung .katalog-nav label[for="pilih-roti"] {
+  opacity: 1; font-weight: 700;
+}
+
+#pilih-pastri:checked ~ .katalog-panggung { --warna-latar: #a8742a; }
+#pilih-pastri:checked ~ .katalog-panggung .katalog-slide-pastri { display: flex; }
+#pilih-pastri:checked ~ .katalog-panggung .katalog-nav label[for="pilih-pastri"] {
+  opacity: 1; font-weight: 700;
+}
+
+#pilih-kue:checked ~ .katalog-panggung { --warna-latar: #6f4a3a; }
+#pilih-kue:checked ~ .katalog-panggung .katalog-slide-kue { display: flex; }
+#pilih-kue:checked ~ .katalog-panggung .katalog-nav label[for="pilih-kue"] {
+  opacity: 1; font-weight: 700;
+}
+
+#pilih-cupcake:checked ~ .katalog-panggung { --warna-latar: #9c6f52; }
+#pilih-cupcake:checked ~ .katalog-panggung .katalog-slide-cupcake { display: flex; }
+#pilih-cupcake:checked ~ .katalog-panggung .katalog-nav label[for="pilih-cupcake"] {
+  opacity: 1; font-weight: 700;
+}
+
+#pilih-kukis:checked ~ .katalog-panggung { --warna-latar: #4a2c1d; }
+#pilih-kukis:checked ~ .katalog-panggung .katalog-slide-kukis { display: flex; }
+#pilih-kukis:checked ~ .katalog-panggung .katalog-nav label[for="pilih-kukis"] {
+  opacity: 1; font-weight: 700;
+}
+
+#pilih-biskuit:checked ~ .katalog-panggung {
+  --warna-teks: #3b2417;
+  --warna-latar: #d8bf98;
+}
+#pilih-biskuit:checked ~ .katalog-panggung .katalog-slide-biskuit { display: flex; }
+#pilih-biskuit:checked ~ .katalog-panggung .katalog-nav label[for="pilih-biskuit"] {
+  opacity: 1; font-weight: 700;
+}
+
+#pilih-mufin:checked ~ .katalog-panggung { --warna-latar: #7a5230; }
+#pilih-mufin:checked ~ .katalog-panggung .katalog-slide-mufin { display: flex; }
+#pilih-mufin:checked ~ .katalog-panggung .katalog-nav label[for="pilih-mufin"] {
+  opacity: 1; font-weight: 700;
+}
+
+#pilih-donat:checked ~ .katalog-panggung {
+  --warna-teks: #3b2417;
+  --warna-latar: #c9a37a;
+}
+#pilih-donat:checked ~ .katalog-panggung .katalog-slide-donat { display: flex; }
+#pilih-donat:checked ~ .katalog-panggung .katalog-nav label[for="pilih-donat"] {
+  opacity: 1; font-weight: 700;
+}
+
+/* ---------- ATURAN GESER PRODUK (PRODUK PER PRODUK) ---------- */
+/* Roti */
+#produk-roti-0:checked ~ .katalog-panggung .katalog-slide-roti .katalog-produk:nth-child(2) { display: flex; }
+#produk-roti-1:checked ~ .katalog-panggung .katalog-slide-roti .katalog-produk:nth-child(3) { display: flex; }
+#produk-roti-2:checked ~ .katalog-panggung .katalog-slide-roti .katalog-produk:nth-child(4) { display: flex; }
+#produk-roti-3:checked ~ .katalog-panggung .katalog-slide-roti .katalog-produk:nth-child(5) { display: flex; }
+#produk-roti-4:checked ~ .katalog-panggung .katalog-slide-roti .katalog-produk:nth-child(6) { display: flex; }
+#produk-roti-5:checked ~ .katalog-panggung .katalog-slide-roti .katalog-produk:nth-child(7) { display: flex; }
+
+/* Pastri */
+#produk-pastri-0:checked ~ .katalog-panggung .katalog-slide-pastri .katalog-produk:nth-child(2) { display: flex; }
+#produk-pastri-1:checked ~ .katalog-panggung .katalog-slide-pastri .katalog-produk:nth-child(3) { display: flex; }
+#produk-pastri-2:checked ~ .katalog-panggung .katalog-slide-pastri .katalog-produk:nth-child(4) { display: flex; }
+#produk-pastri-3:checked ~ .katalog-panggung .katalog-slide-pastri .katalog-produk:nth-child(5) { display: flex; }
+#produk-pastri-4:checked ~ .katalog-panggung .katalog-slide-pastri .katalog-produk:nth-child(6) { display: flex; }
+#produk-pastri-5:checked ~ .katalog-panggung .katalog-slide-pastri .katalog-produk:nth-child(7) { display: flex; }
+
+/* Kue */
+#produk-kue-0:checked ~ .katalog-panggung .katalog-slide-kue .katalog-produk:nth-child(2) { display: flex; }
+#produk-kue-1:checked ~ .katalog-panggung .katalog-slide-kue .katalog-produk:nth-child(3) { display: flex; }
+#produk-kue-2:checked ~ .katalog-panggung .katalog-slide-kue .katalog-produk:nth-child(4) { display: flex; }
+#produk-kue-3:checked ~ .katalog-panggung .katalog-slide-kue .katalog-produk:nth-child(5) { display: flex; }
+#produk-kue-4:checked ~ .katalog-panggung .katalog-slide-kue .katalog-produk:nth-child(6) { display: flex; }
+#produk-kue-5:checked ~ .katalog-panggung .katalog-slide-kue .katalog-produk:nth-child(7) { display: flex; }
+
+/* Cupcake */
+#produk-cupcake-0:checked ~ .katalog-panggung .katalog-slide-cupcake .katalog-produk:nth-child(2) { display: flex; }
+#produk-cupcake-1:checked ~ .katalog-panggung .katalog-slide-cupcake .katalog-produk:nth-child(3) { display: flex; }
+#produk-cupcake-2:checked ~ .katalog-panggung .katalog-slide-cupcake .katalog-produk:nth-child(4) { display: flex; }
+#produk-cupcake-3:checked ~ .katalog-panggung .katalog-slide-cupcake .katalog-produk:nth-child(5) { display: flex; }
+#produk-cupcake-4:checked ~ .katalog-panggung .katalog-slide-cupcake .katalog-produk:nth-child(6) { display: flex; }
+#produk-cupcake-5:checked ~ .katalog-panggung .katalog-slide-cupcake .katalog-produk:nth-child(7) { display: flex; }
+
+/* Kukis */
+#produk-kukis-0:checked ~ .katalog-panggung .katalog-slide-kukis .katalog-produk:nth-child(2) { display: flex; }
+#produk-kukis-1:checked ~ .katalog-panggung .katalog-slide-kukis .katalog-produk:nth-child(3) { display: flex; }
+#produk-kukis-2:checked ~ .katalog-panggung .katalog-slide-kukis .katalog-produk:nth-child(4) { display: flex; }
+#produk-kukis-3:checked ~ .katalog-panggung .katalog-slide-kukis .katalog-produk:nth-child(5) { display: flex; }
+#produk-kukis-4:checked ~ .katalog-panggung .katalog-slide-kukis .katalog-produk:nth-child(6) { display: flex; }
+#produk-kukis-5:checked ~ .katalog-panggung .katalog-slide-kukis .katalog-produk:nth-child(7) { display: flex; }
+
+/* Biskuit */
+#produk-biskuit-0:checked ~ .katalog-panggung .katalog-slide-biskuit .katalog-produk:nth-child(2) { display: flex; }
+#produk-biskuit-1:checked ~ .katalog-panggung .katalog-slide-biskuit .katalog-produk:nth-child(3) { display: flex; }
+#produk-biskuit-2:checked ~ .katalog-panggung .katalog-slide-biskuit .katalog-produk:nth-child(4) { display: flex; }
+#produk-biskuit-3:checked ~ .katalog-panggung .katalog-slide-biskuit .katalog-produk:nth-child(5) { display: flex; }
+#produk-biskuit-4:checked ~ .katalog-panggung .katalog-slide-biskuit .katalog-produk:nth-child(6) { display: flex; }
+#produk-biskuit-5:checked ~ .katalog-panggung .katalog-slide-biskuit .katalog-produk:nth-child(7) { display: flex; }
+
+/* Mufin */
+#produk-mufin-0:checked ~ .katalog-panggung .katalog-slide-mufin .katalog-produk:nth-child(2) { display: flex; }
+#produk-mufin-1:checked ~ .katalog-panggung .katalog-slide-mufin .katalog-produk:nth-child(3) { display: flex; }
+#produk-mufin-2:checked ~ .katalog-panggung .katalog-slide-mufin .katalog-produk:nth-child(4) { display: flex; }
+#produk-mufin-3:checked ~ .katalog-panggung .katalog-slide-mufin .katalog-produk:nth-child(5) { display: flex; }
+#produk-mufin-4:checked ~ .katalog-panggung .katalog-slide-mufin .katalog-produk:nth-child(6) { display: flex; }
+#produk-mufin-5:checked ~ .katalog-panggung .katalog-slide-mufin .katalog-produk:nth-child(7) { display: flex; }
+
+/* Donat */
+#produk-donat-0:checked ~ .katalog-panggung .katalog-slide-donat .katalog-produk:nth-child(2) { display: flex; }
+#produk-donat-1:checked ~ .katalog-panggung .katalog-slide-donat .katalog-produk:nth-child(3) { display: flex; }
+#produk-donat-2:checked ~ .katalog-panggung .katalog-slide-donat .katalog-produk:nth-child(4) { display: flex; }
+#produk-donat-3:checked ~ .katalog-panggung .katalog-slide-donat .katalog-produk:nth-child(5) { display: flex; }
+#produk-donat-4:checked ~ .katalog-panggung .katalog-slide-donat .katalog-produk:nth-child(6) { display: flex; }
+#produk-donat-5:checked ~ .katalog-panggung .katalog-slide-donat .katalog-produk:nth-child(7) { display: flex; }
+
+/* ---------- RESPONSIF KATALOG ---------- */
+@media (max-width: 700px) {
+  .katalog-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    left: 0; right: 0;
+    top: 70px;
+    padding: 0 16px;
+    gap: 14px;
+    white-space: nowrap;
+  }
+  .katalog-pencarian {
+    left: 16px; right: 16px;
+    top: 16px;
+    width: auto;
+  }
+  .katalog-tips { width: 100%; }
+  .katalog-logo { left: 16px; bottom: 16px; }
+  .katalog-logo span { display: none; }
+  .katalog-kontak {
+    right: 16px; bottom: 16px;
+    font-size: 0.7rem;
+  }
+  .katalog-panah-kiri { left: 10px; }
+  .katalog-panah-kanan { right: 10px; }
+  .katalog-panah { width: 42px; height: 42px; top: 60%; }
+  .katalog-nama-produk {
+    bottom: 18vh;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .katalog-panggung * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
